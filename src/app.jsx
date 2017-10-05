@@ -1,10 +1,10 @@
 import {reducer} from './redux/characters.jsx'
 import {addCharacter} from './redux/characters.jsx'
 
-console.log('app.jsx')
+import {CharacterList} from './components/CharacterList.jsx'
+import {CharacterAdd} from './components/AddCharacter.jsx'
 
 var store = Redux.createStore(reducer)
-
 
 var App = React.createClass({
   render: function () {
@@ -15,46 +15,6 @@ var App = React.createClass({
         <CharacterAdd/>
       </div>
     )
-  }
-});
-
-var NewCharacter = React.createClass({
-  render: function () {
-    return (
-      <button
-        onClick={()=>this.props.addCharacter()}>
-        Add Character
-      </button>)
-  }
-});
-
-var CharacterAdd = ReactRedux.connect(
-  ()=>{},
-  (dispatch)=>{return {addCharacter: ()=>{dispatch(addCharacter())}}}
-)(NewCharacter);
-
-var InitiativeList = React.createClass({
-  render: function () {
-    var characters = this.props.characters
-    return (
-      <ul>
-        {characters.map(character => (
-          <InitiativeRow key={character} character={character}/>
-        ))}
-      </ul>
-    )
-  }
-});
-
-var CharacterList = ReactRedux.connect(
-  state => {
-    return { characters: state.characters }
-  }
-)(InitiativeList)
-
-var InitiativeRow = React.createClass({
-  render: function () {
-    return <li>{this.props.character}</li>
   }
 });
 

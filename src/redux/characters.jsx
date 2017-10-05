@@ -12,3 +12,7 @@ export var reducer = function (state = initialState, action) {
 export var addCharacter = function () {
   return {type: "ADD_CHARACTER"}
 }
+
+export var listCharacters = (state) => {
+  return { characters: state.characters }
+}
