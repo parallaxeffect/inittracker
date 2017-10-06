@@ -1,11 +1,23 @@
 import shortid from 'shortid'
 
-var initialState = {characters: ["Mailee"]}
+var initialState = {
+  characters: {
+    allIds: ["first"],
+    first: {id:"first", name:"Mailee"}
+  }
+}
 
 export var reducer = function (state = initialState, action) {
   switch (action.type) {
     case 'ADD_CHARACTER':
-      return {characters: [...state.characters, action.character.name]}
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          allIds: [...state.characters.allIds, action.id],
+          [action.id]: action.character
+        }
+      }
     default:
       return state
   }
@@ -26,5 +38,7 @@ export var addCharacter = function () {
 
 // Selectors
 export var listCharacters = (state) => {
-  return { characters: state.characters }
+  return { characters: state.characters.allIds.map(
+    (id) => { return state.characters[id] }
+  ) }
 }

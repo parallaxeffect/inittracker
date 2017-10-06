@@ -9,7 +9,7 @@ class InitiativeList extends React.Component {
     return (
       <ul>
         {characters.map(character => (
-          <InitiativeRow key={character} character={character}/>
+          <InitiativeRow key={character.id} character={character.name}/>
         ))}
       </ul>
     )
