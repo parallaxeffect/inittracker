@@ -22,8 +22,14 @@ export var CharacterList = connect(
 
 var InitiativeRow =  function (props) {
   var {character} = props
-  var stat = "name"
-  return <tr><InitiativeStat character={character} stat={stat}/></tr>
+  var stats = ["name", "init"]
+  return (<tr>
+      {
+        stats.map(stat => (
+          <InitiativeStat key={stat} character={character} stat={stat}/>
+          ))
+      }
+    </tr>)
 }
 
 var InitiativeStat = function (props) {
