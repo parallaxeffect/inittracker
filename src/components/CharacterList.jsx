@@ -7,11 +7,11 @@ class InitiativeList extends React.Component {
   render() {
     var characters = this.props.characters
     return (
-      <ul>
+      <table><tbody>
         {characters.map(character => (
-          <InitiativeRow key={character.id} character={character.name}/>
+          <InitiativeRow key={character.id} character={character}/>
         ))}
-      </ul>
+      </tbody></table>
     )
   }
 }
@@ -21,5 +21,12 @@ export var CharacterList = connect(
 )(InitiativeList)
 
 var InitiativeRow =  function (props) {
-    return <li>{props.character}</li>
-  }
+  var {character} = props
+  var stat = "name"
+  return <tr><InitiativeStat character={character} stat={stat}/></tr>
+}
+
+var InitiativeStat = function (props) {
+  var {character, stat} = props
+  return <td>{character[stat]}</td>
+}
