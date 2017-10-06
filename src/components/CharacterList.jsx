@@ -1,6 +1,17 @@
+console.log('character begin')
+
+import React from 'react'
+import {connect} from 'react-redux'
+
+console.log('character import react')
+
 import {listCharacters} from '../redux/characters.jsx'
-var InitiativeList = React.createClass({
-  render: function () {
+
+console.log('import listcha')
+
+
+class InitiativeList extends React.Component {
+  render() {
     var characters = this.props.characters
     return (
       <ul>
@@ -10,14 +21,13 @@ var InitiativeList = React.createClass({
       </ul>
     )
   }
-});
+}
 
-export var CharacterList = ReactRedux.connect(
+
+export var CharacterList = connect(
   listCharacters
 )(InitiativeList)
 
-var InitiativeRow = React.createClass({
-  render: function () {
-    return <li>{this.props.character}</li>
+var InitiativeRow =  function (props) {
+    return <li>{props.character}</li>
   }
-});
