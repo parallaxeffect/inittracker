@@ -11,6 +11,7 @@ import {CharacterList} from './components/CharacterList.jsx'
 import {CharacterAdd} from './components/AddCharacter.jsx'
 
 var store = createStore(reducer)
+window.store = store
 
 class App extends Component  {
   render() {
