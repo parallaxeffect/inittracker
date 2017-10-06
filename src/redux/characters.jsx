@@ -2,8 +2,7 @@ import shortid from 'shortid'
 
 var initialState = {
   characters: {
-    allIds: ["first"],
-    first: {id:"first", name:"Mailee"}
+    allIds: [],
   }
 }
 
@@ -14,8 +13,19 @@ export var reducer = function (state = initialState, action) {
         ...state,
         characters: {
           ...state.characters,
+          [action.id]: action.character,
           allIds: [...state.characters.allIds, action.id],
-          [action.id]: action.character
+        }
+      }
+    case 'EDIT_CHARACTER_FIELD':
+      return {
+        ...state,
+        characters: {
+          ...state.characters,
+          [action.id]: {
+            ...state.characters[action.id],
+            [action.field]: action.value
+          }
         }
       }
     default:
@@ -33,6 +43,15 @@ export var addCharacter = function () {
       id,
       name: "New character"
     }
+  }
+}
+
+export var editCharacterField = function(id, field, value) {
+  return {
+    type: "EDIT_CHARACTER_FIELD",
+    id,
+    field,
+    value
   }
 }
 

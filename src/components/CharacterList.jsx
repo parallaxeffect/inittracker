@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {listCharacters} from '../redux/characters.jsx'
+import {listCharacters, editCharacterField} from '../redux/characters.jsx'
 
 class InitiativeList extends React.Component {
   render() {
@@ -41,7 +41,29 @@ var InitiativeRow =  function (props) {
     </tr>)
 }
 
-var InitiativeStat = function (props) {
-  var {character, stat} = props
-  return <td>{character[stat]}</td>
+@connect(
+  ()=>{ return {} },
+  (dispatch)=>{
+    return {
+      updateFieldValue:(id, field, value) =>
+        dispatch(editCharacterField(id, field, value))
+    }
+  }
+)
+class InitiativeStat extends React.Component{
+  onValueChanged(e) {
+    var {character, stat, updateFieldValue} = this.props
+    var {id} = character
+    var value = e.target.value
+    console.log(id, stat, value)
+    updateFieldValue(id, stat, value)
+  }
+
+  render() {
+    var {character, stat} = this.props
+    return <td><input
+      value={character[stat] || ""}
+      onChange={this.onValueChanged.bind(this)}/>
+    </td>
+  }
 }
