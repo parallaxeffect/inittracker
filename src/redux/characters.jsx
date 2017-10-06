@@ -1,14 +1,11 @@
-//import {shortid} from 'shortid'
-//var shortid = require('shortid')
-
 import shortid from 'shortid'
-console.log('shortid')
+
 var initialState = {characters: ["Mailee"]}
 
 export var reducer = function (state = initialState, action) {
   switch (action.type) {
     case 'ADD_CHARACTER':
-      return {characters: ["Mailee", action.name]}
+      return {characters: [...state.characters, action.character.name]}
     default:
       return state
   }
@@ -16,10 +13,14 @@ export var reducer = function (state = initialState, action) {
 
 // Action Generators
 export var addCharacter = function () {
+  var id = shortid.generate()
   return {
     type: "ADD_CHARACTER",
-    id: shortid.generate(),
-    name: "new character"
+    id,
+    character: {
+      id,
+      name: "New character"
+    }
   }
 }
 

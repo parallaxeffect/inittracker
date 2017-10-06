@@ -1,12 +1,8 @@
-console.log('begin')
-
 import React from 'react'
 import {Component} from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {render} from 'react-dom'
-
-console.log('imports')
 
 import {reducer} from './redux/characters.jsx'
 import {addCharacter} from './redux/characters.jsx'
