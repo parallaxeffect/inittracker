@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {listCharacters, editCharacterField} from '../redux/characters.jsx'
+import {listCharactersByFieldNumeric, editCharacterField} from '../redux/characters.jsx'
 
 class InitiativeList extends React.Component {
   render() {
@@ -21,7 +21,7 @@ class InitiativeList extends React.Component {
 }
 
 export var CharacterList = connect(
-  listCharacters
+  (state) => ({characters: listCharactersByFieldNumeric(state, "init").reverse()})
 )(InitiativeList)
 
 var InitiativeHeader = function (props) {
@@ -55,7 +55,6 @@ class InitiativeStat extends React.Component{
     var {character, stat, updateFieldValue} = this.props
     var {id} = character
     var value = e.target.value
-    console.log(id, stat, value)
     updateFieldValue(id, stat, value)
   }
 

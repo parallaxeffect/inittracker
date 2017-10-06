@@ -57,7 +57,13 @@ export var editCharacterField = function(id, field, value) {
 
 // Selectors
 export var listCharacters = (state) => {
-  return { characters: state.characters.allIds.map(
+  return state.characters.allIds.map(
     (id) => { return state.characters[id] }
-  ) }
+  )
+}
+
+export var listCharactersByFieldNumeric = (state, field) => {
+  return listCharacters(state).sort(
+    (a,b) => { return a[field] - b[field] }
+  )
 }
