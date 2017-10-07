@@ -6,7 +6,7 @@ import {listCharactersByFieldNumeric, editCharacterField} from '../redux/charact
 class InitiativeList extends React.Component {
   render() {
     var characters = this.props.characters
-    var stats = ["name", "init"]
+    var stats = ["name", "init", "hp", "ac"]
 
     return (
       <table>

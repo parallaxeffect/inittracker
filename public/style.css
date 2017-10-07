@@ -13,5 +13,9 @@ thead {
 td {
   border: 1px solid;
   padding: 2px;
-  min-width: 20px;
+  min-width: 100px;
+}
+
+input {
+  width: 100px;
 }

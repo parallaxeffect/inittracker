@@ -41,7 +41,7 @@ export var addCharacter = function () {
     id,
     character: {
       id,
-      name: "New character"
+      name: ""
     }
   }
 }
