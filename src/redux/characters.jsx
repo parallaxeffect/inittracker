@@ -4,7 +4,7 @@ var initialState = {
   allIds: [],
 }
 
-export var reducer = function (state = initialState, action) {
+export var characters = function (state = initialState, action) {
   switch (action.type) {
     case 'ADD_CHARACTER':
       return {
