@@ -29,10 +29,10 @@ export var reducer = function (state = initialState, action) {
           }
         }
       }
-    case 'NEXT_TURN':
+    case 'SET_TURN':
       return {
         ...state,
-        currentTurn: nextTurn(state)
+        currentTurn: action.id
       }
     default:
       return state
@@ -61,9 +61,10 @@ export var editCharacterField = function(id, field, value) {
   }
 }
 
-export var nextTurn = function() {
+export var setTurn = function(id) {
   return {
-    type: "NEXT_TURN"
+    type: "SET_TURN",
+    id
   }
 }
 
@@ -84,7 +85,7 @@ export var currentTurn = (state) => {
   return state.currentTurn;
 }
 
-var nextTurn = (state) => {
+export var getNextTurn = (state) => {
   var characters = listCharactersByFieldNumeric(state, "init")
   if (characters.length == 0) {
     return ""
