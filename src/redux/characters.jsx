@@ -1,10 +1,7 @@
 import shortid from 'shortid'
 
 var initialState = {
-  characters: {
-    allIds: [],
-  },
-  currentTurn: ""
+  allIds: [],
 }
 
 export var reducer = function (state = initialState, action) {
@@ -12,27 +9,16 @@ export var reducer = function (state = initialState, action) {
     case 'ADD_CHARACTER':
       return {
         ...state,
-        characters: {
-          ...state.characters,
-          [action.id]: action.character,
-          allIds: [...state.characters.allIds, action.id],
-        }
+        [action.id]: action.character,
+        allIds: [...state.allIds, action.id],
       }
     case 'EDIT_CHARACTER_FIELD':
       return {
         ...state,
-        characters: {
-          ...state.characters,
-          [action.id]: {
-            ...state.characters[action.id],
-            [action.field]: action.value
-          }
+        [action.id]: {
+          ...state[action.id],
+          [action.field]: action.value
         }
-      }
-    case 'SET_TURN':
-      return {
-        ...state,
-        currentTurn: action.id
       }
     default:
       return state

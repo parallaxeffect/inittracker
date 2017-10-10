@@ -4,7 +4,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {render} from 'react-dom'
 
-import {reducer} from './redux/characters.jsx'
+import {reducer} from './redux/index.js'
 import {addCharacter} from './redux/characters.jsx'
 
 import {CharacterList} from './components/CharacterList.jsx'
