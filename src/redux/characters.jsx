@@ -3,7 +3,8 @@ import shortid from 'shortid'
 var initialState = {
   characters: {
     allIds: [],
-  }
+  },
+  currentTurn: ""
 }
 
 export var reducer = function (state = initialState, action) {
@@ -27,6 +28,11 @@ export var reducer = function (state = initialState, action) {
             [action.field]: action.value
           }
         }
+      }
+    case 'NEXT_TURN':
+      return {
+        ...state,
+        currentTurn: nextTurn(state)
       }
     default:
       return state
@@ -55,6 +61,12 @@ export var editCharacterField = function(id, field, value) {
   }
 }
 
+export var nextTurn = function() {
+  return {
+    type: "NEXT_TURN"
+  }
+}
+
 // Selectors
 export var listCharacters = (state) => {
   return state.characters.allIds.map(
@@ -66,4 +78,17 @@ export var listCharactersByFieldNumeric = (state, field) => {
   return listCharacters(state).sort(
     (a,b) => { return a[field] - b[field] }
   )
+}
+
+export var currentTurn = (state) => {
+  return state.currentTurn;
+}
+
+var nextTurn = (state) => {
+  var next = ""
+  var characters = listCharactersByFieldNumeric(state, "init")
+  if (characters.length > 0) {
+    next = characters[0].id
+  }
+  return next
 }

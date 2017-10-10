@@ -10,6 +10,10 @@ thead {
   font-weight: bold;
 }
 
+tr.current {
+  background-color: yellow;
+}
+
 td {
   border: 1px solid;
   padding: 2px;

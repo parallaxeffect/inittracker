@@ -1,27 +1,35 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {listCharactersByFieldNumeric, editCharacterField} from '../redux/characters.jsx'
+import {
+  listCharactersByFieldNumeric,
+  editCharacterField,
+  currentTurn
+} from '../redux/characters.jsx'
 
 class InitiativeList extends React.Component {
   render() {
-    var characters = this.props.characters
+    var {characters, currentTurn} = this.props
     var stats = ["name", "init", "hp", "ac", "notes"]
 
     return (
       <table>
         <thead><InitiativeHeader stats={stats}/></thead>
         <tbody>
-        {characters.map(character => (
-          <InitiativeRow key={character.id} character={character} stats={stats}/>
-        ))}
+        {characters.map(character => {
+          var className = currentTurn == character.id ? " current " : ""
+          return <InitiativeRow key={character.id} character={character} stats={stats} className={className}/>
+        })}
       </tbody></table>
     )
   }
 }
 
 export var CharacterList = connect(
-  (state) => ({characters: listCharactersByFieldNumeric(state, "init").reverse()})
+  (state) => ({
+    characters: listCharactersByFieldNumeric(state, "init").reverse(),
+    currentTurn: currentTurn(state)
+  })
 )(InitiativeList)
 
 var InitiativeHeader = function (props) {
@@ -31,8 +39,8 @@ var InitiativeHeader = function (props) {
 }
 
 var InitiativeRow =  function (props) {
-  var {character, stats} = props
-  return (<tr>
+  var {character, stats, className} = props
+  return (<tr className={className}>
       {
         stats.map(stat => (
           <InitiativeStat key={stat} character={character} stat={stat}/>

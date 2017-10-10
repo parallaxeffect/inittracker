@@ -9,6 +9,7 @@ import {addCharacter} from './redux/characters.jsx'
 
 import {CharacterList} from './components/CharacterList.jsx'
 import {CharacterAdd} from './components/AddCharacter.jsx'
+import {NextTurn} from './components/NextTurn.jsx'
 
 var store = createStore(reducer)
 window.store = store
@@ -20,6 +21,7 @@ class App extends Component  {
         <h1>Initiative Tracker</h1>
         <CharacterList/>
         <CharacterAdd/>
+        <NextTurn/>
       </div>
     )
   }
