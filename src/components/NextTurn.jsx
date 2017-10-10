@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {setTurn, getNextTurn} from '../redux/characters.jsx'
+import {setTurn, getNextTurn} from '../redux/currentTurn.js'
 
 @connect(
   (state)=>{return {next: getNextTurn(state)}},

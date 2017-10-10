@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 
 import {
   listCharactersByFieldNumeric,
-  editCharacterField,
-  currentTurn
+  editCharacterField
 } from '../redux/characters.jsx'
 
 class InitiativeList extends React.Component {
@@ -28,7 +27,7 @@ class InitiativeList extends React.Component {
 export var CharacterList = connect(
   (state) => ({
     characters: listCharactersByFieldNumeric(state, "init").reverse(),
-    currentTurn: currentTurn(state)
+    currentTurn: state.currentTurn
   })
 )(InitiativeList)
 

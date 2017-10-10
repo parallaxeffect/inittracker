@@ -47,13 +47,6 @@ export var editCharacterField = function(id, field, value) {
   }
 }
 
-export var setTurn = function(id) {
-  return {
-    type: "SET_TURN",
-    id
-  }
-}
-
 // Selectors
 export var listCharacters = (state) => {
   return state.characters.allIds.map(
@@ -65,23 +58,4 @@ export var listCharactersByFieldNumeric = (state, field) => {
   return listCharacters(state).sort(
     (a,b) => { return a[field] - b[field] }
   )
-}
-
-export var currentTurn = (state) => {
-  return state.currentTurn;
-}
-
-export var getNextTurn = (state) => {
-  var characters = listCharactersByFieldNumeric(state, "init")
-  if (characters.length == 0) {
-    return ""
-  }
-  var next = characters[characters.length-1].id
-  for (var i=0; i<characters.length; i++) {
-    if (characters[i].id == currentTurn(state)) {
-      return next
-    }
-    next = characters[i].id
-  }
-  return next
 }
