@@ -85,10 +85,16 @@ export var currentTurn = (state) => {
 }
 
 var nextTurn = (state) => {
-  var next = ""
   var characters = listCharactersByFieldNumeric(state, "init")
-  if (characters.length > 0) {
-    next = characters[0].id
+  if (characters.length == 0) {
+    return ""
+  }
+  var next = characters[characters.length-1].id
+  for (var i=0; i<characters.length; i++) {
+    if (characters[i].id == currentTurn(state)) {
+      return next
+    }
+    next = characters[i].id
   }
   return next
 }
