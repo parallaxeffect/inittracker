@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 
 import {
   listCharactersByFieldNumeric,
-  editCharacterField
+  editCharacterField,
+  removeCharacter
 } from '../redux/characters.jsx'
 
 class InitiativeList extends React.Component {
@@ -31,6 +32,20 @@ export var CharacterList = connect(
   })
 )(InitiativeList)
 
+@connect(
+  (state) => {return state},
+  (dispatch) => {return {remove: (character) => {dispatch(removeCharacter(character))}}}
+)
+class DeleteButton extends React.Component {
+  delete(character) {
+    console.log("deleted", character)
+  }
+  render() {
+    const {character} = this.props
+    return <td><button onClick = {() => this.props.remove(character.id)}>del</button></td>
+  }
+}
+
 var InitiativeHeader = function (props) {
   return (<tr>
     { props.stats.map( stat => (<td key={stat}>{stat}</td>) ) }
@@ -45,6 +60,7 @@ var InitiativeRow =  function (props) {
           <InitiativeStat key={stat} character={character} stat={stat}/>
           ))
       }
+      <DeleteButton character={character}/>
     </tr>)
 }
 

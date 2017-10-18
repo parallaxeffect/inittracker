@@ -20,6 +20,13 @@ export var characters = function (state = initialState, action) {
           [action.field]: action.value
         }
       }
+    case 'REMOVE_CHARACTER':
+      console.log('remove character', action.id)
+      return {
+        ...state,
+        [action.id]: undefined,
+        allIds: state.allIds.filter(id => {return id !== action.id})
+      }
     default:
       return state
   }
@@ -44,6 +51,13 @@ export var editCharacterField = function(id, field, value) {
     id,
     field,
     value
+  }
+}
+
+export var removeCharacter = function(id) {
+  return {
+    type: "REMOVE_CHARACTER",
+    id
   }
 }
 
