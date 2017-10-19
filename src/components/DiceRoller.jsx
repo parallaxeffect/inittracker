@@ -21,6 +21,12 @@ export class DiceRoller extends React.Component {
       })
     }
 
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        roll()
+      }
+    }
+
     const roll = () => {
       this.setState({
         roll: this.state.roll,
@@ -28,7 +34,8 @@ export class DiceRoller extends React.Component {
       })
     }
     return (<div>Dice Roller:
-        <input id = {id} onChange={(e)=>onChange(e)}/>
+        <input id = {id} onChange={(e)=>onChange(e)}
+          onKeyPress = {(e)=>handleKeyPress(e)}/>
         <button onClick={()=>roll()}>Roll</button>
         <span>={this.state.result}</span>
       </div>)
