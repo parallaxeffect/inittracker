@@ -10,6 +10,7 @@ import {addCharacter} from './redux/characters.jsx'
 import {CharacterList} from './components/CharacterList.jsx'
 import {CharacterAdd} from './components/AddCharacter.jsx'
 import {NextTurn} from './components/NextTurn.jsx'
+import {DiceRoller} from './components/DiceRoller.jsx'
 
 var store = createStore(reducer)
 window.store = store
@@ -22,6 +23,7 @@ class App extends Component  {
         <CharacterList/>
         <CharacterAdd/>
         <NextTurn/>
+        <DiceRoller/>
       </div>
     )
   }
